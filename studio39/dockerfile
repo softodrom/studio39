@@ -1,0 +1,16 @@
+FROM php:8.3-fpm
+
+# system deps
+RUN apt-get update && apt-get install -y git unzip libpng-dev libzip-dev curl nodejs npm \
+    && docker-php-ext-install pdo_mysql
+
+# composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+WORKDIR /var/www/html
+COPY . .
+
+RUN composer install
+RUN npm install && npm run build
+
+CMD ["php-fpm"]
