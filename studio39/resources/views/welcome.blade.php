@@ -6,7 +6,7 @@
     <title>Laravel + Svelte</title>
     @vite('resources/js/app.js')
   </head>
-  <body class="bg-gray-100 text-gray-900">
+  <body>
     <div id="app"></div>
   </body>
 </html>
